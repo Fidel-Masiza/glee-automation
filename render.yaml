@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: shift-auto-claimer
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      playwright install chromium
+      playwright install-deps
+    startCommand: python render_shift_claimer.py
+    envVars:
+      - key: RENDER
+        value: true
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: /usr/local/lib/playwright
+    plan: free
